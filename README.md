@@ -27,7 +27,7 @@ Lehrperson: [@yvesnussletbz](https://github.com/yvesnussletbz) (Owner)
 | | Link |
 |---|---|
 | Zeitlogging | _folgt_ |
-| Board | _folgt_ |
+| Board | [Kanban](https://github.com/orgs/m324-ap23a-team3/projects/3/views/2) · [Übersicht aller Issues](https://github.com/orgs/m324-ap23a-team3/projects/3/views/3) · [Epics](https://github.com/orgs/m324-ap23a-team3/projects/3/views/4) |
 | Repositories | [ms1](https://github.com/m324-ap23a-team3/ms1) · [ms2](https://github.com/m324-ap23a-team3/ms2) |
 | Dokumentation | [docs/](./docs/) · [Meetings und Arbeitsprozesse](./docs/Meetings_Arbeitsprozesse.md) |
 | Produktion | (ab P4) |
