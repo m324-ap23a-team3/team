@@ -29,9 +29,6 @@ flowchart LR
     B --> C["Check-in<br/>5 min<br/>nach der Pause"]
     C --> D["Arbeiten<br/>an Tickets"]
     D --> E["Retro<br/>10 min<br/>Tagesende"]
-    B -. "blockiert > 15 min" .-> H["Huddle<br/>max. 15 min"]
-    D -. "blockiert > 15 min" .-> H
-    H -.-> B
 ```
 
 | Was | Wann | Dauer | Ergebnis |
@@ -39,9 +36,8 @@ flowchart LR
 | [Planning](#31-planning) | Start jedes Modultags | 15 min | Jede Person hat ein Ticket, genug Tickets in «Bereit» |
 | [Check-in](#32-check-in) | Nach der Pause | 5 min | Blocker sind bekannt und haben eine Lösung |
 | [Retro](#33-retro) | Letzte 10 min des Modultags | 10 min | Was lief gut, was verbessern wir, eine Massnahme als Ticket |
-| [Huddle](#34-huddle-ad-hoc) | Bei Bedarf | max. 15 min | Technisches Problem gelöst oder Entscheid getroffen |
-| [Review / Demo](#35-review--demo) | Vor jeder Abnahme (P2, P3, P4) | 20 min | Jede Person kann das ganze System erklären |
-| [Code Review](#36-code-review-asynchron) | Laufend, im Pull Request | – | Kein Merge ohne Review |
+| [Review / Demo](#34-review--demo) | Vor jeder Abnahme (P2, P3, P4) | 20 min | Jede Person kann das ganze System erklären |
+| [Code Review](#35-code-review-asynchron) | Laufend, im Pull Request | – | Kein Merge ohne Review |
 
 Alle Meetings werden im Zeitlogging auf das Ticket **`Meetings`** mit der Art `Meeting` geloggt, pro Person.
 
@@ -126,7 +122,7 @@ Reihum beantwortet jede Person in höchstens **1 Minute**:
 1. Woran arbeite ich, bin ich auf Kurs fürs Tagesziel?
 2. Bin ich blockiert oder warte ich (auf Review, Pipeline, Lehrperson)?
 
-Blocker werden **nicht** im Check-in gelöst, sondern direkt danach in einem [Huddle](#34-huddle-ad-hoc) mit den betroffenen Personen. Die Board-Rolle markiert blockierte Tickets mit dem Label `blockiert`.
+Blocker werden **nicht** im Check-in gelöst. Wer helfen kann, meldet sich und klärt es direkt danach mit der betroffenen Person. Die Board-Rolle markiert blockierte Tickets mit dem Label `blockiert`.
 
 ### 3.3 Retro
 
@@ -147,20 +143,7 @@ Blocker werden **nicht** im Check-in gelöst, sondern direkt danach in einem [Hu
 
 **Ergebnis:** Gut/Besser/Massnahme im Protokoll, Massnahme als Ticket auf dem Board.
 
-### 3.4 Huddle (ad hoc)
-
-| | |
-|---|---|
-| **Wann** | Sobald jemand **länger als 15 Minuten** an etwas festhängt, oder für einen technischen Entscheid |
-| **Dauer** | max. 15 min |
-| **Wer** | Nur die betroffenen Personen |
-| **Ziel** | Problem lösen oder Entscheid treffen, ohne das ganze Team zu stoppen |
-
-- Wer festhängt, ruft den Huddle aus (im Team-Chat oder direkt).
-- Ergebnis wird als Kommentar im betroffenen Ticket festgehalten.
-- Grössere Entscheide (Technologie, Architektur, Prozess) kommen zusätzlich ins Tagesprotokoll unter «Entscheide» und werden im nächsten Planning dem ganzen Team kurz vorgestellt.
-
-### 3.5 Review / Demo
+### 3.4 Review / Demo
 
 | | |
 |---|---|
@@ -173,7 +156,7 @@ Blocker werden **nicht** im Check-in gelöst, sondern direkt danach in einem [Hu
 2. **Checkliste (5 min):** Bewertungskriterien des Auftrags durchgehen. Fehlendes wird als Ticket erfasst.
 3. **Offene Punkte (3 min):** Was ist nicht erklärbar? → Ticket mit Label `docs` oder Wissensaustausch im nächsten Planning.
 
-### 3.6 Code Review (asynchron)
+### 3.5 Code Review (asynchron)
 
 Code Review ist kein Meeting, sondern läuft im Pull Request. Details zu Branches und Merge-Wegen stehen in der Branching-Strategie (D2).
 
@@ -190,7 +173,7 @@ Code Review ist kein Meeting, sondern läuft im Pull Request. Details zu Branche
 |---|---|
 | **Pünktlich starten.** Der Timekeeper startet zur abgemachten Zeit, auch wenn jemand fehlt. | Wartezeit von vier Personen ist teuer. |
 | **Agenda steht vorher im Protokoll.** Kein Meeting ohne Agenda. | Alle wissen, worum es geht und wann es fertig ist. |
-| **Timebox einhalten.** Ist die Zeit eines Punkts um, wird er auf den **Parkplatz** gesetzt (Abschnitt im Protokoll) und später im Huddle geklärt. | Meetings dauern nicht länger als nötig. |
+| **Timebox einhalten.** Ist die Zeit eines Punkts um, wird er auf den **Parkplatz** gesetzt (Abschnitt im Protokoll) und nach dem Meeting von den Betroffenen geklärt. | Meetings dauern nicht länger als nötig. |
 | **Reihum sprechen.** In Planning, Check-in und Retro kommt jede Person in fester Reihenfolge dran, beginnend bei der Person nach der Moderation. | Alle beteiligen sich, niemand dominiert. |
 | **Jede Person hat jedes Meeting mindestens einen Beitrag.** Die Moderation fragt aktiv nach, wer noch nichts gesagt hat. | Aktive Mitarbeit ist sichtbar. |
 | **Entscheide mit Daumen** (hoch / quer / runter). Bei «runter» erklärt die Person kurz warum, dann wird nochmals abgestimmt; danach gilt die Mehrheit. | Schnelle Entscheide, Einwände werden gehört. |
@@ -270,8 +253,8 @@ flowchart LR
 2. **Arbeiten:** Branch gemäss Branching-Strategie (D2) anlegen. Commits referenzieren das Ticket:
    `m324-ap23a-team3/<repo>#<nr> Kurzbeschreibung`
    Beispiel: `m324-ap23a-team3/ms1#4 POST /mitarbeiter mit Validierung`
-3. **Festhängen:** Nach 15 Minuten ohne Fortschritt Hilfe holen (Huddle). Wartezeit im Zeitlogging als `Warten` mit Grund erfassen.
-4. **Review:** Pull Request erstellen, im PR-Text `Closes m324-ap23a-team3/<repo>#<nr>`, Reviewer anfragen (siehe [Code Review](#36-code-review-asynchron)), Ticket nach «Review» schieben.
+3. **Festhängen:** Nach 15 Minuten ohne Fortschritt eine Person im Team direkt oder im Team-Chat um Hilfe fragen. Wartezeit im Zeitlogging als `Warten` mit Grund erfassen.
+4. **Review:** Pull Request erstellen, im PR-Text `Closes m324-ap23a-team3/<repo>#<nr>`, Reviewer anfragen (siehe [Code Review](#35-code-review-asynchron)), Ticket nach «Review» schieben.
 5. **Fertig:** Nach Approval und grüner Pipeline mergen. Das Issue schliesst sich automatisch, das Ticket landet in «Done». Definition of Done kurz prüfen.
 6. **Nächstes:** Zuerst offene Reviews anschauen, dann das nächste Ticket aus «Bereit» ziehen.
 
@@ -281,7 +264,7 @@ flowchart LR
 |---|---|
 | GitHub-Issue / Pull Request | Alles, was ein Ticket betrifft: Fragen, Entscheide, Review. Bleibt nachvollziehbar. |
 | Tagesprotokoll in `docs/meetings/` | Meeting-Ergebnisse, Entscheide, Retro |
-| Team-Chat | Kurze Absprachen, Huddle ausrufen. Ergebnisse gehören danach ins Ticket. |
+| Team-Chat | Kurze Absprachen und Hilfe holen. Ergebnisse gehören danach ins Ticket. |
 | Lehrperson | Gebündelt über die Moderation des Tages |
 
 ---
