@@ -6,7 +6,7 @@ Jeder Themenblock (gemäss D1) liegt in einer eigenen Datei.
 |---|---|---|
 | Meetings und Arbeitsprozesse | [Meetings_Arbeitsprozesse.md](./Meetings_Arbeitsprozesse.md) | D3 |
 | Branching-Strategie und Versionierung | _folgt_ | D2 |
-| Applikation / Technologie | _folgt_ | P2 |
+| Applikation / Technologie | [Applikation.md](./Applikation.md) | P2 |
 
 Planung: [Projektplan.md](./Projektplan.md) (Epics und Issues)
 
